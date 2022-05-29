@@ -1,5 +1,6 @@
 package org.eug.todo;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -7,12 +8,9 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.ResponseEntity;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-
-@SpringBootTest(classes = App.class,
-        webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = App.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class HelloControllerTest {
+
     @LocalServerPort
     private int port;
 
@@ -21,15 +19,13 @@ public class HelloControllerTest {
 
     @Test
     public void testHello() {
-        ResponseEntity<String> responseEntity = this.restTemplate
-                .getForEntity("http://localhost:" + port + "/", String.class);
-        assertEquals("Hello World!", responseEntity.getBody());
+        ResponseEntity<String> responseEntity = this.restTemplate.getForEntity("http://localhost:" + port + "/tasks", String.class);
+        Assertions.assertEquals(200, responseEntity.getStatusCodeValue());
     }
 
     @Test
     public void testAddEmployee() {
-        ResponseEntity<String> responseEntity = this.restTemplate
-                .getForEntity("http://localhost:" + port + "/", String.class);
-        assertEquals(200, responseEntity.getStatusCodeValue());
+        ResponseEntity<String> responseEntity = this.restTemplate.getForEntity("http://localhost:" + port + "/tasks", String.class);
+        Assertions.assertEquals(200, responseEntity.getStatusCodeValue());
     }
 }

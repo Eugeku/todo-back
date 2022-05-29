@@ -1,16 +1,16 @@
 package org.eug.todo.bean;
 
-import org.hibernate.annotations.DynamicUpdate;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.Objects;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import java.sql.Date;
-
-@DynamicUpdate
-public class Task {
+@Entity
+@Table(name = "Tasks")
+public class Task implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String description;
@@ -55,5 +55,18 @@ public class Task {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Task task = (Task) o;
+        return Objects.equals(id, task.id) && Objects.equals(name, task.name) && Objects.equals(description, task.description) && Objects.equals(priority, task.priority) && Objects.equals(date, task.date);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, description, priority, date);
     }
 }
