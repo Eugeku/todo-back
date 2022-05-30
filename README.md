@@ -8,7 +8,7 @@ BE part of **TODO: task tracker**
 
 	mvn spring-boot:run 
         -Dspring.profiles.active=[dev/prod]
-        -Dspring-boot.run.jvmArguments='-Dport=8090'
+        -Dspring-boot.run.jvmArguments='-Dport=8090 -Ddb=jdbc:h2:mem:testdb -Ddbuser=sa -Ddbpassword=password'
         
     where: 
         -Dport=8090 - server port start
@@ -16,6 +16,24 @@ BE part of **TODO: task tracker**
                 local: 8080
                 dev: 8080
                 prod: 8080
+
+        -Ddb=jdbc:h2:mem:testdb - datasource url
+            default: 
+                local: jdbc:h2:mem:testdb
+                dev: jdbc:h2:mem:testdb
+                prod: jdbc:h2:mem:testdb
+
+        -Ddbuser=sa - db user
+            default: 
+                local: sa
+                dev: sa
+                prod: sa
+
+        -Ddbpassword=password - db password
+            default: 
+                local:
+                dev:
+                prod:
 
 ## Profiles
 

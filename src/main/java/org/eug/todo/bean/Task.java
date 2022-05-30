@@ -7,7 +7,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "Tasks")
-public class Task implements Serializable {
+public class Task implements Serializable, Cloneable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -68,5 +68,14 @@ public class Task implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, description, priority, date);
+    }
+
+    @Override
+    public Task clone() {
+        try {
+            return (Task) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 }
