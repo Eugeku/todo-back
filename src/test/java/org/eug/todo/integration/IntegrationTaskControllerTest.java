@@ -10,14 +10,14 @@ import java.util.Date;
 public class IntegrationTaskControllerTest extends BaseIntegrationTest {
 
     @Test
-    public void testHello() {
+    public void getTasksListTest() {
         ResponseEntity<String> responseEntity = restTemplate.getForEntity("http://localhost:" + port + "/tasks", String.class);
 
         Assertions.assertEquals(200, responseEntity.getStatusCodeValue());
     }
 
     @Test
-    public void testSaveUser() {
+    public void saveOneTaskTest() {
         Task task = new Task();
         task.setName("name");
         task.setDescription("description");

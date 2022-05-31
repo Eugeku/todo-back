@@ -17,6 +17,18 @@ public class Task implements Serializable, Cloneable {
     private Integer priority;
     private Date date;
 
+    @ManyToOne()
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
     public Long getId() {
         return id;
     }
@@ -73,6 +85,7 @@ public class Task implements Serializable, Cloneable {
     @Override
     public Task clone() {
         try {
+            // TODO: copy mutable state here, so the clone can't change the internals of the original
             return (Task) super.clone();
         } catch (CloneNotSupportedException e) {
             throw new AssertionError();
