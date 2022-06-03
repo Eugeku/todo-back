@@ -6,7 +6,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "Users")
-public class User implements Serializable {
+public class User implements Serializable, Cloneable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -58,5 +58,15 @@ public class User implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, surname, description);
+    }
+
+    @Override
+    public User clone() {
+        try {
+            // TODO: copy mutable state here, so the clone can't change the internals of the original
+            return (User) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 }

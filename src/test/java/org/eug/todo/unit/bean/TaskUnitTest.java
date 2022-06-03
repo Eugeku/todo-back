@@ -29,8 +29,8 @@ public class TaskUnitTest extends BaseUnitTest {
         Task expectedTask = new Task();
         expectedTask.setId(RANDOM.nextLong());
         expectedTask.setName("" + RANDOM.nextInt());
-        expectedTask.setDescription("test");
-        expectedTask.setPriority(12);
+        expectedTask.setDescription("" + RANDOM.nextInt());
+        expectedTask.setPriority(RANDOM.nextInt());
         expectedTask.setDate(new Date());
         task = expectedTask.clone();
 
@@ -76,7 +76,7 @@ public class TaskUnitTest extends BaseUnitTest {
     }
 
     @Test
-    @DisplayName("Not equals test by ID")
+    @DisplayName("Not equals test by fields")
     void notEqualsIDTest() {
         Task expectedTask = new Task();
         task = expectedTask.clone();
