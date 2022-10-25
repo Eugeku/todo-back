@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -30,7 +31,7 @@ public class UserControllerImpl implements UserController {
 
     @Override
     @PostMapping(path = "/users", produces = "application/json")
-    public User saveUser(@RequestBody User user) {
+    public User saveUser(@Valid @RequestBody User user) {
         try {
             return userService.saveUser(user);
         } catch (ServiceException e) {
