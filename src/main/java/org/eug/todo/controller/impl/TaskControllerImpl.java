@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -30,12 +31,11 @@ public class TaskControllerImpl implements TaskController {
 
     @Override
     @PostMapping(path = "/tasks", produces = "application/json")
-    public Task saveTask(@RequestBody Task task) {
+    public Task saveTask(@Valid @RequestBody Task task) {
         try {
             return taskService.saveTask(task);
         } catch (ServiceException e) {
             throw new RuntimeException(e);
         }
     }
-
 }
