@@ -18,12 +18,13 @@ public class DefaultExceptionHandler {
     @ExceptionHandler({ServiceException.class})
     public ResponseEntity<ExceptionResponse> handleValidationException(Exception e) {
         log.debug(e.getMessage(), e);
+
         return new ResponseEntity<>(new ExceptionResponse(ILLEGAL_ARGUMENT_ERROR), HttpStatus.BAD_REQUEST);
     }
 
-//    @ExceptionHandler({ControllerException.class})
-//    public ResponseEntity<ExceptionResponse> handleControllerException(Exception e) {
-//        log.debug(e.getMessage(), e);
-//        return new ResponseEntity<>(new ExceptionResponse(CONTROLLER_ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
-//    }
+    @ExceptionHandler({ServiceException.class})
+    public ResponseEntity<ExceptionResponse> handleControllerException(Exception e) {
+        log.debug(e.getMessage(), e);
+        return new ResponseEntity<>(new ExceptionResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }

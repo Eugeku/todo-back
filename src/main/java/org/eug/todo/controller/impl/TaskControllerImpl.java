@@ -23,7 +23,7 @@ import java.util.Optional;
 public class TaskControllerImpl implements TaskController {
 
     @Autowired
-    TaskService taskService;
+    private TaskService taskService;
 
     @Override
     @GetMapping(path = "/tasks", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -38,7 +38,7 @@ public class TaskControllerImpl implements TaskController {
     @GetMapping(path = "/tasks/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Optional<Task> getTaskById(@PathVariable Long id) throws ControllerException {
         try {
-            return taskService.getTaskById(id);
+             return taskService.getTaskById(id);
         } catch (ServiceException e) {
             throw new ControllerException(e);
         }
