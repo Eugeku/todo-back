@@ -1,4 +1,4 @@
-package org.eug.todo.controller.exception.handler;
+package org.eug.todo.exceptionhandler;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

@@ -3,6 +3,7 @@ package org.eug.todo.controller.impl;
 import org.eug.todo.bean.User;
 import org.eug.todo.controller.exception.ControllerException;
 import org.eug.todo.controller.iface.UserController;
+import org.eug.todo.exceptionhandler.CustomExceptionHandler;
 import org.eug.todo.service.exception.ServiceException;
 import org.eug.todo.service.iface.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 import java.util.List;
 
-//@Validated
-//@CustomExceptionHandler
+@CustomExceptionHandler
 @RestController
 public class UserControllerImpl implements UserController {
 
